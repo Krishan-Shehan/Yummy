@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Yummy</string>
+
+    <string name="My_Ingredients">My Ingredients</string>
+    <string name="recipe">Recipe</string>
+    <string name="Featured_Recipes">Featured Recipes</string>
+    <string name="Recipe_of_the_day">Recipe of the day</string>
+
+    <string name="recipe_name">Swedish meatballs</string>
+    <string name="cooking_time">30 min</string>
+    <string name="portions">3 portions</string>
+
+    <string name="Category_1">Dairy</string>
+    <string name="Category_2">Vegetables</string>
+    <string name="Category_3">Fruits</string>
+    <string name="Category_4">Spiecs</string>
+    <string name="Category_1_item1">Butter</string>
+    <string name="Category_1_item2">Egg</string>
+
+
+    <string name="Topic_1"><u>Publish Recipes</u></string>
+    <string name="add_recipe_photo">Photos and Videos</string>
+    <string name="add_name">Name</string>
+    <string name="add_ing">Ingredients</string>
+    <string name="add_recipe">Recipe</string>
+
+
+    <string name="user_name">Micheal Bezot</string>
+    <string name="Favourites">Favourites</string>
+    <string name="Publications">Publications</string>
+    <string name="Register">Register</string>
+    <string name="Add_pic">Add Profile Pic</string>
+    <string name="Uname">Name</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+
+</resources>
