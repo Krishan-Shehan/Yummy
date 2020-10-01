@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.button22);
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this,Ingredientst.class);
+               Intent intent = new Intent(MainActivity.this,IngredientList.class);
                startActivity(intent);
             }
         });
