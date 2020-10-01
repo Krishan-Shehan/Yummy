@@ -40,7 +40,7 @@ public class IngredientList extends AppCompatActivity {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IngredientList.this,MainActivity.class);
+                Intent intent = new Intent(IngredientList.this,RecipeList.class);
                 startActivity(intent);
             }
         });
