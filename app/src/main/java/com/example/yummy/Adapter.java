@@ -1,7 +1,6 @@
 package com.example.yummy;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,18 @@ import java.util.List;
 
 public class Adapter extends PagerAdapter {
 
-    private List<Model> models;
+    private List<Swaping> swapings;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public Adapter(List<Model> models, Context context) {
-        this.models = models;
+    public Adapter(List<Swaping> swapings, Context context) {
+        this.swapings = swapings;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return models.size();
+        return swapings.size();
     }
 
     @Override
@@ -47,15 +46,15 @@ public class Adapter extends PagerAdapter {
         title = view.findViewById(R.id.title);
         //desc = view.findViewById(R.id.desc);
 
-        imageView.setImageResource(models.get(position).getImage());
-        title.setText(models.get(position).getTitle());
-        //desc.setText(models.get(position).getDesc());
+        imageView.setImageResource(swapings.get(position).getImage());
+        title.setText(swapings.get(position).getTitle());
+        //desc.setText(swapings.get(position).getDesc());
 
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(context, DetailActivity.class);
-//                intent.putExtra("param", models.get(position).getTitle());
+//                intent.putExtra("param", swapings.get(position).getTitle());
 //                context.startActivity(intent);
 //                // finish();
 //            }

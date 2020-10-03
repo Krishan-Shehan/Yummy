@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends
 
     }
 
-//    public RecyclerViewAdapter( ArrayList<Model> imageModelArrayList) {
+//    public RecyclerViewAdapter( ArrayList<com.example.yummy.Swaping> imageModelArrayList) {
 //
 //        this.imageModelArrayList = imageModelArrayList;
 //
@@ -73,7 +73,7 @@ public class RecyclerViewAdapter extends
                     imageModelArrayList.remove(mImageNames.get(position));
                 }
                 Log.d("ck", String.valueOf(imageModelArrayList));
-//                Model fruits1 = (Model)holder.checkBox.getTag();
+//                com.example.yummy.Swaping fruits1 = (com.example.yummy.Swaping)holder.checkBox.getTag();
 //
 //                fruits1.setSelected(holder.checkBox.isChecked());
 //

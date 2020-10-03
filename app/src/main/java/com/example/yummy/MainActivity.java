@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     Adapter adapter;
-    List<Model> models;
+    List<Swaping> swapings;
     //Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
@@ -49,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        models = new ArrayList<>();
-        models.add(new Model(R.drawable.egg_cress_club_sandwich_0, "Recipe1"));
-        models.add(new Model(R.drawable.image__2, "Recipe2"));
-        models.add(new Model(R.drawable.image__5, "Recipe3"));
-        models.add(new Model(R.drawable.image__6, "Recipe4"));
+        swapings = new ArrayList<>();
+        swapings.add(new Swaping(R.drawable.egg_cress_club_sandwich_0, "Recipe1"));
+        swapings.add(new Swaping(R.drawable.image__2, "Recipe2"));
+        swapings.add(new Swaping(R.drawable.image__5, "Recipe3"));
+        swapings.add(new Swaping(R.drawable.image__6, "Recipe4"));
 
-        adapter = new Adapter(models, this);
+        adapter = new Adapter(swapings, this);
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);

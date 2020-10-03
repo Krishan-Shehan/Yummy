@@ -1,12 +1,12 @@
 package com.example.yummy;
 
-public class Model {
+public class Swaping {
 
     private int image;
     private String title;
     private String desc;
 
-    public Model(int image, String title) {
+    public Swaping(int image, String title) {
         this.image = image;
         this.title = title;
        // this.desc = desc;
