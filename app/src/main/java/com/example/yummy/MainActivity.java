@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,IngredientList.class);
+                Intent intent = new Intent(MainActivity.this,AddIngredientCategory.class);
                 startActivity(intent);
             }
         });

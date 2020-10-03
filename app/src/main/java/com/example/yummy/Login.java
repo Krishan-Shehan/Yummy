@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.paperdb.Paper;
 
 public class Login extends AppCompatActivity {
@@ -33,6 +37,13 @@ public class Login extends AppCompatActivity {
 
     private String parentDbname = "Users";
     private CheckBox chkboxRememberMe;
+
+
+//    public static List<Album> rep = new ArrayList<>();
+
+    public static List<User> loged = new ArrayList<>();
+
+    User users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +60,12 @@ public class Login extends AppCompatActivity {
         chkboxRememberMe = (CheckBox) findViewById(R.id.remember_me);
         Paper.init(this);
 
+        users = new User();
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 LoginUser();
             }
         });
@@ -106,20 +119,25 @@ public class Login extends AppCompatActivity {
 
             Paper.book().write(Prevelen.userPasswordKey, password);
         }
+
+        Log.d("ph",phone);
+
+
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if(snapshot.child(parentDbname).child(phone).exists()){
                     User userData = snapshot.child(parentDbname).child(phone).getValue(User.class);
-
                     if(userData.getPhone().equals(phone)){
                         if(userData.getPassword().equals(password)){
                             if(parentDbname.equals("Admins")){
                                 Toast.makeText(Login.this,"Admin logged in Successfully..",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+
 
                                 Intent intent = new Intent(Login.this,AddIngredientCategory.class);
                                 startActivity(intent);
@@ -127,9 +145,7 @@ public class Login extends AppCompatActivity {
                             else if(parentDbname.equals("Users")){
                                 Toast.makeText(Login.this,"Logged in Successfully..",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-
-
-
+                                loged.add(userData);
                                 Intent intent = new Intent(Login.this, Home.class);
                                 Prevelen.currentOnlineUser = userData;
                                 startActivity(intent);

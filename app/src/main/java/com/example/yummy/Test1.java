@@ -1,25 +1,25 @@
-package com.example.yummy.Model;
+package com.example.yummy;
 
-public class User {
-    private String username;
-    private String phone;
-    private String password;
+public class Test1 {
+    String name;
+    String phone;
+    String password;
 
-    public User() {
+    public Test1() {
     }
 
-    public User(String name, String phone, String password) {
-        this.username = name;
+    public Test1(String name, String phone, String password) {
+        this.name = name;
         this.phone = phone;
         this.password = password;
     }
 
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getPhone() {

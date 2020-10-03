@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,19 +12,26 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 
 public class AddAdmin extends AppCompatActivity {
 
+    View view;
     private String categoryName, ingredientName;
     private Button addIngredientBtn;
     private EditText inputIngredient;
@@ -31,12 +39,30 @@ public class AddAdmin extends AppCompatActivity {
     private String ingredientKey;
     private DatabaseReference ingredientRef;
     private ProgressDialog loadingBar;
+    private AddminIngAdapter adapter;
 
+    LinearLayoutManager layoutManager;
+    RecyclerView recyclerView;
+    DatabaseReference databaseReference;
+
+
+    ArrayList<String> ingredients = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_admin);
 
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView = findViewById(R.id.ingedit);
+
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new AddminIngAdapter(this,ingredients);
+        recyclerView.setAdapter(adapter);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("IngredientsCategory").child("Added Sweeteners");
+        databaseReference.addListenerForSingleValueEvent(eventListener);
+
+        Log.d("lg", String.valueOf(ingredients));
         categoryName = getIntent().getExtras().get("category").toString();
         ingredientRef = FirebaseDatabase.getInstance().getReference().child("Ingredients");
 
@@ -53,6 +79,23 @@ public class AddAdmin extends AppCompatActivity {
         });
 
     }
+
+    ValueEventListener eventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                Log.d("l", (String) dataSnapshot.getValue());
+                ingredients.add((String) dataSnapshot.getValue());
+            }
+            Log.d("l", String.valueOf(ingredients));
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     private void ValidateIngredient(){
         ingredientName = inputIngredient.getText().toString();

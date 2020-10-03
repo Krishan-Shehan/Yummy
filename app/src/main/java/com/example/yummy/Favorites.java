@@ -84,7 +84,7 @@ public class Favorites extends AppCompatActivity {
                 Log.d("albumc",album.getName());
                 Log.d("albumc",String.valueOf(album.getThumbnail()));
             }
-            adapter.notifyDataSetChanged();
+            Log.d("albumc",String.valueOf(album.getThumbnail()));
         }
 
         @Override
