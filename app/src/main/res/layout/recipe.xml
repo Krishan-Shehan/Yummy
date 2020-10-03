@@ -25,7 +25,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/addtofav"
         android:layout_width="36dp"
         android:layout_height="35dp"
         android:layout_marginStart="336dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/name"
         android:layout_width="166dp"
         android:layout_height="100dp"
         android:layout_marginVertical="350dp"

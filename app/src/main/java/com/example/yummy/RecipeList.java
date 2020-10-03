@@ -46,22 +46,6 @@ public class RecipeList extends AppCompatActivity {
         album = new Album();
 
 //        prepareAlbums();
-
-        int[] covers = new int[]{
-                R.drawable.album1,
-                R.drawable.album2,
-                R.drawable.album3,
-                R.drawable.album4,
-                R.drawable.album5,
-                R.drawable.album6,
-                R.drawable.album7,
-                R.drawable.album8,
-                R.drawable.album9,
-                R.drawable.album10,
-                R.drawable.album11};
-
-
-
         adapter = new AlbumsAdapter(RecipeList.this, albumList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(RecipeList.this, 2);
@@ -168,7 +152,7 @@ public class RecipeList extends AppCompatActivity {
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
         private int spacing;

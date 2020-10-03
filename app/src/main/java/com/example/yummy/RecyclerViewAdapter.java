@@ -60,9 +60,6 @@ public class RecyclerViewAdapter extends
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.checkBox.setText("Checkbox " + position);
-//        holder.imageName.setText(mImageNames.get(position));
-//        holder.checkBox.setChecked(imageModelArrayList.get(position).getSelected());
-//        holder.imageName.setText(imageModelArrayList.get(position).getAnimal());
         holder.checkBox.setTag(position);
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override

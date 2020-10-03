@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button button,fav;
 
     ViewPager viewPager;
     Adapter adapter;
@@ -30,18 +30,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fav = findViewById(R.id.button);
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,IngredientList.class);
+                startActivity(intent);
+            }
+        });
         button = findViewById(R.id.button22);
         button.setOnClickListener(
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this,IngredientList.class);
+               Intent intent = new Intent(MainActivity.this,Favorites.class);
                startActivity(intent);
             }
         });
-
-
-
 
 
         models = new ArrayList<>();

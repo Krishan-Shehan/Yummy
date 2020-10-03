@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/rname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name : "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/ringredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ingredients : "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/rportions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="portions : "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/rrecipedetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="recipedetails : "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/rnewnotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notes : "
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/recipename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipe Name : "
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ingredients : "
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/portions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="portions : "
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/recipedetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="recipedetails : "
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/newnotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notes : "
+        android:textSize="18dp"/>
+    </LinearLayout>
+
+</LinearLayout>
