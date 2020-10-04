@@ -40,6 +40,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
                 intent.putExtra("category", "dairy");
+                intent.putExtra("countofing", 0);
                 startActivity(intent);
             }
         });
@@ -49,6 +50,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
                 intent.putExtra("category", "vegetables");
+                intent.putExtra("countofing", 1);
                 startActivity(intent);
             }
         });
@@ -58,6 +60,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
                 intent.putExtra("category", "fruits");
+                intent.putExtra("countofing", 2);
                 startActivity(intent);
             }
         });
@@ -67,6 +70,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
                 intent.putExtra("category", "desserts");
+                intent.putExtra("countofing", 3);
                 startActivity(intent);
             }
         });
@@ -76,6 +80,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
                 intent.putExtra("category", "spices");
+                intent.putExtra("countofing", 4);
                 startActivity(intent);
             }
         });

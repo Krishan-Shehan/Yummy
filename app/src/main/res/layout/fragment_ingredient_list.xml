@@ -4,6 +4,10 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/parent_layout"
     android:padding="10dp">
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,4 +26,37 @@
         android:text="Checkbox"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editingrediantname"
+        android:text="edit"
+        android:layout_toLeftOf="@+id/Deleteingname"
+        android:visibility="invisible"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Deleteingname"
+        android:text="Delete"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="10dp"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/editi"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/sbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="save"
+        android:layout_below="@+id/rl"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
 </RelativeLayout>

@@ -39,6 +39,7 @@ public class Recipe extends AppCompatActivity {
 
         album = AlbumsAdapter.rep.get(0);
         AlbumsAdapter.rep.remove(0);
+
         Log.d("albumre", String.valueOf(album));
 
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);

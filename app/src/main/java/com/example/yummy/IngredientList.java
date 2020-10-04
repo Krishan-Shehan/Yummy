@@ -66,7 +66,7 @@ public class IngredientList extends AppCompatActivity {
                     tab.addTab(tab.newTab().setText(ingredients.get(k)));
                 }
 
-                PlansPagerAdapter adapter = new PlansPagerAdapter(getSupportFragmentManager(),tab.getTabCount());
+                PlansPagerAdapter adapter = new PlansPagerAdapter(getSupportFragmentManager(),tab.getTabCount(),0,9);
                 viewPager.setAdapter(adapter);
                 viewPager.setOffscreenPageLimit(1);
                 viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));

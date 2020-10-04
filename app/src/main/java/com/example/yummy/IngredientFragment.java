@@ -30,15 +30,29 @@ public class IngredientFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    public static IngredientFragment newInstance(int val) {
+    public static IngredientFragment newInstance(int val,int f,int k) {
         IngredientFragment fragment = new IngredientFragment();
-        Bundle args = new Bundle();
-        args.putInt("someInt", val);
-        fragment.setArguments(args);
-        return fragment;
+
+        if (k != 9 ){
+            val = k;
+            Bundle args = new Bundle();
+            args.putInt("someInt", val);
+            args.putInt("frame",f);
+            Log.d("f", String.valueOf(f));
+            fragment.setArguments(args);
+            return fragment;
+        }else {
+            Bundle args = new Bundle();
+            args.putInt("someInt", val);
+            args.putInt("frame", f);
+            fragment.setArguments(args);
+            return fragment;
+        }
     }
 
     int val;
+    int f;
+    int k;
     TextView c;
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mName = new ArrayList<>();
@@ -74,10 +88,10 @@ public class IngredientFragment extends Fragment {
 
                         Log.d("testl", String.valueOf(mName));
                         recyclerView = view.findViewById(R.id.recycler_view);
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mName);
-                        recyclerView.setAdapter(adapter);
+                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mName,f,mNames.get(val));
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        c.setText("" + val);
+                        adapter.notifyDataSetChanged();
+                        recyclerView.setAdapter(adapter);
 
                     }
 
@@ -85,7 +99,9 @@ public class IngredientFragment extends Fragment {
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
+
                 };
+
 //                if (val == 0) {
 //                    DatabaseReference usersRef = databaseReference.child(mNames.get(val));
 //                    Log.d("chilname", mNames.get(val));
@@ -182,6 +198,7 @@ public class IngredientFragment extends Fragment {
         };
 
         val = getArguments().getInt("someInt", 0);
+        f = getArguments().getInt("frame",0);
         Log.d("val", val + "");
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
 
@@ -193,7 +210,6 @@ public class IngredientFragment extends Fragment {
 //            usersRef2.addListenerForSingleValueEvent(valueEventListener);
 //        }
 
-        c = view.findViewById(R.id.c);
 //        modelArrayList = getModel(false);
 //        RecyclerViewAdapter adapter = new RecyclerViewAdapter(modelArrayList);
 //        recyclerView.setAdapter(adapter);

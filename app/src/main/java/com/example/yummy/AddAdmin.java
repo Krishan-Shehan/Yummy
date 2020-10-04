@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,8 +32,8 @@ import java.util.HashMap;
 
 public class AddAdmin extends AppCompatActivity {
 
-    View view;
     private String categoryName, ingredientName;
+    private int countofing;
     private Button addIngredientBtn;
     private EditText inputIngredient;
     private String saveCurrentDate, saveCurrentTime;
@@ -40,10 +41,7 @@ public class AddAdmin extends AppCompatActivity {
     private DatabaseReference ingredientRef;
     private ProgressDialog loadingBar;
     private AddminIngAdapter adapter;
-
-    LinearLayoutManager layoutManager;
-    RecyclerView recyclerView;
-    DatabaseReference databaseReference;
+    ViewPager viewPager;
 
 
     ArrayList<String> ingredients = new ArrayList<>();
@@ -52,23 +50,27 @@ public class AddAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_admin);
 
-        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView = findViewById(R.id.ingedit);
 
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new AddminIngAdapter(this,ingredients);
-        recyclerView.setAdapter(adapter);
+        categoryName = getIntent().getExtras().get("category").toString();
+//        categoryName = getIntent().getExtras().get("category").toString();
+        countofing = (int) getIntent().getExtras().get("countofing");
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("IngredientsCategory").child("Added Sweeteners");
-        databaseReference.addListenerForSingleValueEvent(eventListener);
+        viewPager = findViewById(R.id.view11);
+        PlansPagerAdapter adapter = new PlansPagerAdapter(getSupportFragmentManager(),1,1,countofing);
+        viewPager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        viewPager.setOffscreenPageLimit(1);
+
 
         Log.d("lg", String.valueOf(ingredients));
-        categoryName = getIntent().getExtras().get("category").toString();
-        ingredientRef = FirebaseDatabase.getInstance().getReference().child("Ingredients");
+
+        ingredientRef = FirebaseDatabase.getInstance().getReference().child("IngredientsCategory").child(categoryName);
 
         addIngredientBtn = (Button) findViewById(R.id.add_ingredient_btn);
         inputIngredient = (EditText) findViewById(R.id.ingredientName);
         loadingBar = new ProgressDialog(this);
+
+//        inputIngredient.setHint(namex);
 
 
         addIngredientBtn.setOnClickListener(new View.OnClickListener() {
@@ -80,22 +82,6 @@ public class AddAdmin extends AppCompatActivity {
 
     }
 
-    ValueEventListener eventListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                Log.d("l", (String) dataSnapshot.getValue());
-                ingredients.add((String) dataSnapshot.getValue());
-            }
-            Log.d("l", String.valueOf(ingredients));
-            adapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
 
     private void ValidateIngredient(){
         ingredientName = inputIngredient.getText().toString();
@@ -126,31 +112,46 @@ public class AddAdmin extends AppCompatActivity {
     }
 
     private void SaveIngredient() {
-        HashMap<String,Object> ingredientAdd = new HashMap<>();
-        ingredientAdd.put("ingredientid", ingredientKey);
-        ingredientAdd.put("date", saveCurrentDate);
-        ingredientAdd.put("time", saveCurrentTime);
-        ingredientAdd.put("category", categoryName);
-        ingredientAdd.put("ingredientName", ingredientName);
+        final ArrayList<String> ing = new ArrayList<>();
+        ingredientRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    ing.add((String) dataSnapshot.getValue());
+                }
+                ing.add(ingredientName);
+//                ingredientRef.child(categoryName).setValue(ing)
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("IngredientsCategory").child(categoryName);
+                databaseReference.setValue(ing)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Intent intent = new Intent(AddAdmin.this, AddIngredientCategory.class);
+                                    startActivity(intent);
 
-        ingredientRef.child(ingredientKey).updateChildren(ingredientAdd)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(AddAdmin.this, AddIngredientCategory.class);
-                            startActivity(intent);
+                                    loadingBar.dismiss();
+                                    Toast.makeText(AddAdmin.this, "Ingredient added succesfully", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    loadingBar.dismiss();
+                                    String message = task.getException().toString();
+                                    Toast.makeText(AddAdmin.this,"Error: "+message,Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
 
-                            loadingBar.dismiss();
-                            Toast.makeText(AddAdmin.this, "Ingredient added succesfully", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            loadingBar.dismiss();
-                            String message = task.getException().toString();
-                            Toast.makeText(AddAdmin.this,"Error: "+message,Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//        ingredientRef.child(categoryName).updateChildren(ingredientAdd)
+
     }
 
 }

@@ -42,12 +42,10 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/buttons"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ingedit"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_ingredient_btn"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_below="@+id/add_ingredient_btn"/>
 
 </RelativeLayout>
