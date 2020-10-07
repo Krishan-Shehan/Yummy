@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,22 +27,22 @@ public class Recipe extends AppCompatActivity {
     TextView favicon,addnote,Mname;
     EditText notes;
     Button addtonote;
-    Album album;
+    Recipeclass recipeclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        album = AlbumsAdapter.rep.get(0);
+        recipeclass = AlbumsAdapter.rep.get(0);
         AlbumsAdapter.rep.remove(0);
 
-        Log.d("albumre", String.valueOf(album));
+        Log.d("albumre", String.valueOf(recipeclass));
 
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView = findViewById(R.id.recipeview);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecipeAdapter(this,album);
+        adapter = new RecipeAdapter(this, recipeclass);
         recyclerView.setAdapter(adapter);
 
         favicon = findViewById(R.id.addtofav);
@@ -54,7 +51,7 @@ public class Recipe extends AppCompatActivity {
         addtonote = findViewById(R.id.addtonote);
         Mname = findViewById(R.id.Mname);
 
-        Mname.setText(album.getName());
+        Mname.setText(recipeclass.getName());
 
         favicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +64,8 @@ public class Recipe extends AppCompatActivity {
                 DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
                 try{
 
-                    def.child(album.getName()).setValue(album);
-//                    Log.d("ll", String.valueOf(album));
+                    def.child(recipeclass.getName()).setValue(recipeclass);
+//                    Log.d("ll", String.valueOf(recipeclass));
 
                 }catch (Exception e){
 
@@ -99,12 +96,12 @@ public class Recipe extends AppCompatActivity {
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(album.getName())){
+                        if (snapshot.hasChild(recipeclass.getName())){
 //                            notes.getText();
-                            album.setThumbnail(1234);
+                            recipeclass.setThumbnail(1234);
 
-                            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav").child(album.getName());
-                            dRef.setValue(album);
+                            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav").child(recipeclass.getName());
+                            dRef.setValue(recipeclass);
                         }
                     }
 

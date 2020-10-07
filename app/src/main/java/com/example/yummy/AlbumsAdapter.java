@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 //import com.bumptech.glide.Glide;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +26,8 @@ import java.util.List;
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Album> albumList;
-    public static List<Album> rep = new ArrayList<>();
+    private List<Recipeclass> recipeclassList;
+    public static List<Recipeclass> rep = new ArrayList<>();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
@@ -46,9 +45,9 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     }
 
 
-    public AlbumsAdapter(Context mContext, List<Album> albumList) {
+    public AlbumsAdapter(Context mContext, List<Recipeclass> recipeclassList) {
         this.mContext = mContext;
-        this.albumList = albumList;
+        this.recipeclassList = recipeclassList;
     }
 
     @Override
@@ -62,13 +61,13 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final Album album = albumList.get(position);
-        holder.title.setText(album.getName());
+        final Recipeclass recipeclass = recipeclassList.get(position);
+        holder.title.setText(recipeclass.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Album album1 = album;
-                rep.add(album1);
+                Recipeclass recipeclass1 = recipeclass;
+                rep.add(recipeclass1);
                 Log.d("rep", String.valueOf(rep));
 
 
@@ -81,13 +80,13 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View view) {
 
-                Log.d("fav",album.getName());
+                Log.d("fav", recipeclass.getName());
 
                 DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
                 try{
 
-                    def.child(album.getName()).setValue(album);
-//                    Log.d("ll", String.valueOf(album));
+                    def.child(recipeclass.getName()).setValue(recipeclass);
+//                    Log.d("ll", String.valueOf(recipeclass));
 
                 }catch (Exception e){
 
@@ -96,15 +95,15 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             }
         });
 
-//        holder.count.setText(album.getNumOfSongs() + " songs");
+//        holder.count.setText(recipeclass.getNumOfSongs() + " songs");
 
-//        Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
+//        Glide.with(mContext).load(recipeclass.getThumbnail()).into(holder.thumbnail);
 
     }
 
 
     @Override
     public int getItemCount() {
-        return albumList.size();
+        return recipeclassList.size();
     }
 }

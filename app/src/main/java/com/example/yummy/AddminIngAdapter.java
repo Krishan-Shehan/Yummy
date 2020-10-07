@@ -24,7 +24,7 @@ public class AddminIngAdapter extends RecyclerView.Adapter<AddminIngAdapter.View
     private Context mContext;
     ArrayList<String> ingredients;
 
-//    public static List<Album> rep = new ArrayList<>();
+//    public static List<Recipeclass> rep = new ArrayList<>();
 
 
 

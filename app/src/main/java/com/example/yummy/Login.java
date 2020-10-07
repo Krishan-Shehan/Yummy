@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
     private CheckBox chkboxRememberMe;
 
 
-//    public static List<Album> rep = new ArrayList<>();
+//    public static List<Recipeclass> rep = new ArrayList<>();
 
     public static List<User> loged = new ArrayList<>();
 

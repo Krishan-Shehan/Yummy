@@ -7,14 +7,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,32 +29,32 @@ public class Favorites extends AppCompatActivity {
 
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
-    private List<Album> albumList;
+    private List<Recipeclass> recipeclassList;
     private FavoritesRecyclerViewAdapter adapter;
     private AlbumsAdapter adapter2;
     LinearLayoutManager layoutManager;
     RecyclerView recyclerView,recyclerView2;
 
-    Album album,t1;
+    Recipeclass recipeclass,t1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-//        Log.d("log", (String) getIntent().getSerializableExtra("album"));
+//        Log.d("log", (String) getIntent().getSerializableExtra("recipeclass"));
 
 //        t1 = AlbumsAdapter.rep.get(0);
 //        Log.d("t1", String.valueOf(t1));
 //        AlbumsAdapter.rep.remove(0);
 
-        albumList = new ArrayList<>();
-        this.album = new Album();
+        recipeclassList = new ArrayList<>();
+        this.recipeclass = new Recipeclass();
 
         layoutManager = new GridLayoutManager(this, 2);
         recyclerView2 = findViewById(R.id.favoritesedited);
 
         recyclerView2.setLayoutManager(layoutManager);
-        adapter2 = new AlbumsAdapter( Favorites.this,albumList);
+        adapter2 = new AlbumsAdapter( Favorites.this, recipeclassList);
         recyclerView2.addItemDecoration(new RecipeList.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView2.setItemAnimator(new DefaultItemAnimator());
         recyclerView2.setAdapter(adapter2);
@@ -65,7 +63,7 @@ public class Favorites extends AppCompatActivity {
         recyclerView = findViewById(R.id.favoritesSlider);
 
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new FavoritesRecyclerViewAdapter(this,albumList);
+        adapter = new FavoritesRecyclerViewAdapter(this, recipeclassList);
         recyclerView.setAdapter(adapter);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
@@ -79,12 +77,12 @@ public class Favorites extends AppCompatActivity {
         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                album = dataSnapshot.getValue( Album.class );
-                albumList.add(album);
-                Log.d("albumc",album.getName());
-                Log.d("albumc",String.valueOf(album.getThumbnail()));
+                recipeclass = dataSnapshot.getValue( Recipeclass.class );
+                recipeclassList.add(recipeclass);
+                Log.d("albumc", recipeclass.getName());
+                Log.d("albumc",String.valueOf(recipeclass.getThumbnail()));
             }
-            Log.d("albumc",String.valueOf(album.getThumbnail()));
+            Log.d("albumc",String.valueOf(recipeclass.getThumbnail()));
         }
 
         @Override

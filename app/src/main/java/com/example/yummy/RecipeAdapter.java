@@ -10,15 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
-    private Album album;
+    private Recipeclass recipeclass;
     private Context mContext;
 
-    public  RecipeAdapter(Context context,Album album){
-        this.album = album;
+    public  RecipeAdapter(Context context, Recipeclass recipeclass){
+        this.recipeclass = recipeclass;
         this.mContext = context;
     }
 
@@ -31,8 +29,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
-        holder.recipename.setText(album.getName());
-        Log.d("albumrname",album.getName());
+        holder.recipename.setText(recipeclass.getName());
+        Log.d("albumrname", recipeclass.getName());
     }
 
     @Override

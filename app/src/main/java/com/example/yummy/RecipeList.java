@@ -17,7 +17,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -27,9 +26,9 @@ public class RecipeList extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AlbumsAdapter adapter;
-    private List<Album> albumList;
+    private List<Recipeclass> recipeclassList;
     public List<String> ingredients = new ArrayList<>();
-    Album album;
+    Recipeclass recipeclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +36,16 @@ public class RecipeList extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_list);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        albumList = new ArrayList<>();
+        recipeclassList = new ArrayList<>();
 
         ingredients.add("True");
         ingredients.add("Romance");
 
 
-        album = new Album();
+        recipeclass = new Recipeclass();
 
 //        prepareAlbums();
-        adapter = new AlbumsAdapter(RecipeList.this, albumList);
+        adapter = new AlbumsAdapter(RecipeList.this, recipeclassList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(RecipeList.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -54,12 +53,12 @@ public class RecipeList extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Album");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipeclass");
 
 //        Query query1 = recipeRef.where("ingredients.tomato", "==", true).where("ingredients.pepper", "==", true).where("ingredients.cheese", "==", true);
 
 
-//        Query query = FirebaseDatabase.getInstance().getReference("Album")
+//        Query query = FirebaseDatabase.getInstance().getReference("Recipeclass")
 //                .orderByChild("test")
 //                .equalTo("kk");
 //                .startAt("Romance")
@@ -76,12 +75,12 @@ public class RecipeList extends AppCompatActivity {
         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                album = dataSnapshot.getValue( Album.class );
-                albumList.add(album);
-                Log.d("albumc",album.getName());
-                Log.d("albumc",String.valueOf(album.getThumbnail()));
+                recipeclass = dataSnapshot.getValue( Recipeclass.class );
+                recipeclassList.add(recipeclass);
+                Log.d("albumc", recipeclass.getName());
+                Log.d("albumc",String.valueOf(recipeclass.getThumbnail()));
             }
-            Log.d("album", String.valueOf(albumList));
+            Log.d("recipeclass", String.valueOf(recipeclassList));
             adapter.notifyDataSetChanged();
 
 
@@ -116,35 +115,35 @@ public class RecipeList extends AppCompatActivity {
                 R.drawable.album10,
                 R.drawable.album11};
 
-        Album a = new Album("True Romance", covers[0]);
-        albumList.add(a);
+        Recipeclass a = new Recipeclass("True Romance", covers[0]);
+        recipeclassList.add(a);
 
-        a = new Album("Xscpae",covers[1]);
-        albumList.add(a);
+        a = new Recipeclass("Xscpae",covers[1]);
+        recipeclassList.add(a);
 
-        a = new Album("Maroon 5",  covers[2]);
-        albumList.add(a);
+        a = new Recipeclass("Maroon 5",  covers[2]);
+        recipeclassList.add(a);
 
-        a = new Album("Born to Die",  covers[3]);
-        albumList.add(a);
+        a = new Recipeclass("Born to Die",  covers[3]);
+        recipeclassList.add(a);
 
-        a = new Album("Honeymoon",  covers[4]);
-        albumList.add(a);
+        a = new Recipeclass("Honeymoon",  covers[4]);
+        recipeclassList.add(a);
 
-        a = new Album("I Need a Doctor", covers[5]);
-        albumList.add(a);
+        a = new Recipeclass("I Need a Doctor", covers[5]);
+        recipeclassList.add(a);
 
-        a = new Album("Loud",  covers[6]);
-        albumList.add(a);
+        a = new Recipeclass("Loud",  covers[6]);
+        recipeclassList.add(a);
 
-        a = new Album("Legend",  covers[7]);
-        albumList.add(a);
+        a = new Recipeclass("Legend",  covers[7]);
+        recipeclassList.add(a);
 
-        a = new Album("Hello", covers[8]);
-        albumList.add(a);
+        a = new Recipeclass("Hello", covers[8]);
+        recipeclassList.add(a);
 
-        a = new Album("Greatest Hits",covers[9]);
-        albumList.add(a);
+        a = new Recipeclass("Greatest Hits",covers[9]);
+        recipeclassList.add(a);
 
         adapter.notifyDataSetChanged();
     }

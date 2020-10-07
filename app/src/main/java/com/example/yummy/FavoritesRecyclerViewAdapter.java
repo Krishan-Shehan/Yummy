@@ -1,6 +1,5 @@
 package com.example.yummy;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritesRecyclerViewAdapter extends RecyclerView.Adapter<FavoritesRecyclerViewAdapter.ViewHolder> {
@@ -21,13 +18,13 @@ public class FavoritesRecyclerViewAdapter extends RecyclerView.Adapter<Favorites
     private static final String TAG = "RecyclerViewAdapter";
 
     //vars
-    private List<Album> albumList;
+    private List<Recipeclass> recipeclassList;
 //    private ArrayList<String> mImageUrls = new ArrayList<>();
     private Context mContext;
 
 
-    public FavoritesRecyclerViewAdapter(Context context,List<Album> albumList){
-        this.albumList = albumList;
+    public FavoritesRecyclerViewAdapter(Context context,List<Recipeclass> recipeclassList){
+        this.recipeclassList = recipeclassList;
         mContext = context;
     }
 
@@ -43,8 +40,8 @@ public class FavoritesRecyclerViewAdapter extends RecyclerView.Adapter<Favorites
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d("favc","onBindViewHolder : cld");
-        final Album album = albumList.get(position);
-        holder.name.setText(album.getName());
+        final Recipeclass recipeclass = recipeclassList.get(position);
+        holder.name.setText(recipeclass.getName());
     }
 
 
@@ -70,7 +67,7 @@ public class FavoritesRecyclerViewAdapter extends RecyclerView.Adapter<Favorites
 
     @Override
     public int getItemCount() {
-        return albumList.size();
+        return recipeclassList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
