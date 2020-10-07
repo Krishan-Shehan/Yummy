@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yummy.Model.Onlineuser;
 import com.example.yummy.Model.User;
 import com.example.yummy.Prevelent.Prevelen;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.paperdb.Paper;
+//import io.paperdb.Paper;
 
 public class Login extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class Login extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
         chkboxRememberMe = (CheckBox) findViewById(R.id.remember_me);
-        Paper.init(this);
+//        Paper.init(this);
 
         users = new User();
 
@@ -115,9 +116,9 @@ public class Login extends AppCompatActivity {
     private void AllowAccessToAccount(final String phone, final String password) {
 
         if(chkboxRememberMe.isChecked()){
-            Paper.book().write(Prevelen.userPhoneKey, phone);
-
-            Paper.book().write(Prevelen.userPasswordKey, password);
+//            Paper.book().write(Prevelen.userPhoneKey, phone);
+//
+//            Paper.book().write(Prevelen.userPasswordKey, password);
         }
 
         Log.d("ph",phone);
@@ -134,22 +135,20 @@ public class Login extends AppCompatActivity {
                     User userData = snapshot.child(parentDbname).child(phone).getValue(User.class);
                     if(userData.getPhone().equals(phone)){
                         if(userData.getPassword().equals(password)){
-                            if(parentDbname.equals("Admins")){
-                                Toast.makeText(Login.this,"Admin logged in Successfully..",Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
 
+                            if (phone.equals("01190119")){
 
-                                Intent intent = new Intent(Login.this,AddIngredientCategory.class);
-                                startActivity(intent);
-                            }
-                            else if(parentDbname.equals("Users")){
+                            }else if(phone.equals("01180116")){
+
+                            }else{
                                 Toast.makeText(Login.this,"Logged in Successfully..",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 loged.add(userData);
-                                Intent intent = new Intent(Login.this, Home.class);
-                                Prevelen.currentOnlineUser = userData;
+                                Intent intent = new Intent(Login.this, MainActivity.class);
                                 startActivity(intent);
+                                Onlineuser.onlineuser = userData;
                             }
+
                         }
                         else{
                             loadingBar.dismiss();

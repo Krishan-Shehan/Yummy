@@ -54,7 +54,7 @@ public class Favorites extends AppCompatActivity {
         recyclerView2 = findViewById(R.id.favoritesedited);
 
         recyclerView2.setLayoutManager(layoutManager);
-        adapter2 = new AlbumsAdapter( Favorites.this, recipeclassList);
+        adapter2 = new AlbumsAdapter( Favorites.this, recipeclassList,"fav");
         recyclerView2.addItemDecoration(new RecipeList.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView2.setItemAnimator(new DefaultItemAnimator());
         recyclerView2.setAdapter(adapter2);
@@ -66,7 +66,7 @@ public class Favorites extends AppCompatActivity {
         adapter = new FavoritesRecyclerViewAdapter(this, recipeclassList);
         recyclerView.setAdapter(adapter);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child("0767158801").child("favorites");
 
         databaseReference.addListenerForSingleValueEvent(eventListener);
 
@@ -83,6 +83,7 @@ public class Favorites extends AppCompatActivity {
                 Log.d("albumc",String.valueOf(recipeclass.getThumbnail()));
             }
             Log.d("albumc",String.valueOf(recipeclass.getThumbnail()));
+            adapter.notifyDataSetChanged();
         }
 
         @Override

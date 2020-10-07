@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.yummy.Model.Onlineuser;
 import com.example.yummy.Model.User;
 import com.example.yummy.Prevelent.Prevelen;
 
@@ -18,7 +19,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         username = (TextView) findViewById(R.id.user_profile_name);
-        Log.d("user:", String.valueOf(Prevelen.currentOnlineUser));
-        username.setText(Prevelen.currentOnlineUser.getName());
+        username.setText(Onlineuser.onlineuser.getName());
     }
 }

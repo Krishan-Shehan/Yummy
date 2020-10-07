@@ -1,20 +1,53 @@
 package com.example.yummy;
 
-/**
- * Created by Lincoln on 18/05/16.
- */
+
 public class Recipeclass {
-    private String name;
-//    private int numOfSongs;
+    private String name,ingredients,method,note,portion;
     private int thumbnail;
+
 
     public Recipeclass() {
     }
 
-    public Recipeclass(String name, int thumbnail) {
+    public Recipeclass(String name, String ingredients, String method, String note, String portion, int thumbnail) {
         this.name = name;
-//        this.numOfSongs = numOfSongs;
+        this.ingredients = ingredients;
+        this.method = method;
+        this.note = note;
+        this.portion = portion;
         this.thumbnail = thumbnail;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getPortion() {
+        return portion;
+    }
+
+    public void setPortion(String portion) {
+        this.portion = portion;
     }
 
     public String getName() {

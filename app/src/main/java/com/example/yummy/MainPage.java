@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import io.paperdb.Paper;
 
 public class MainPage extends AppCompatActivity {
     private Button joinnowbtn,loginbtn;
@@ -34,7 +33,6 @@ public class MainPage extends AppCompatActivity {
         loginbtn = (Button) findViewById(R.id.main_login_btn);
         loadingBar = new ProgressDialog(this);
 
-        Paper.init(this);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,19 +51,19 @@ public class MainPage extends AppCompatActivity {
         });
 
 
-        String UserPhoneKey = Paper.book().read(Prevelen.userPhoneKey);
-        String UserPasswordKey = Paper.book().read(Prevelen.userPasswordKey);
+//        String UserPhoneKey = Paper.book().read(Prevelen.userPhoneKey);
+//        String UserPasswordKey = Paper.book().read(Prevelen.userPasswordKey);
 
-        if (UserPhoneKey != "" && UserPasswordKey != "") {
-            if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
-                AllowAccess(UserPhoneKey, UserPasswordKey);
-
-                loadingBar.setTitle("Already Logged in");
-                loadingBar.setMessage("Please wait...");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
-            }
-        }
+//        if (UserPhoneKey != "" && UserPasswordKey != "") {
+//            if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
+//                AllowAccess(UserPhoneKey, UserPasswordKey);
+//
+//                loadingBar.setTitle("Already Logged in");
+//                loadingBar.setMessage("Please wait...");
+//                loadingBar.setCanceledOnTouchOutside(false);
+//                loadingBar.show();
+//            }
+//        }
     }
 
         private void AllowAccess(final String phone, final String password) {

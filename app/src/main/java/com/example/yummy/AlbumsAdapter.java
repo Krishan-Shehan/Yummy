@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yummy.Model.Onlineuser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,11 +29,13 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     private Context mContext;
     private List<Recipeclass> recipeclassList;
     public static List<Recipeclass> rep = new ArrayList<>();
+    private String fav;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public ImageView thumbnail, overflow;
         public Button button;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -45,9 +48,10 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     }
 
 
-    public AlbumsAdapter(Context mContext, List<Recipeclass> recipeclassList) {
+    public AlbumsAdapter(Context mContext, List<Recipeclass> recipeclassList,String fav) {
         this.mContext = mContext;
         this.recipeclassList = recipeclassList;
+        this.fav = fav;
     }
 
     @Override
@@ -62,6 +66,10 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Recipeclass recipeclass = recipeclassList.get(position);
+        if (fav.equals("fav")){
+            holder.button.setText("Delete");
+        }
+
         holder.title.setText(recipeclass.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,20 +84,25 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
             }
         });
+        holder.thumbnail.setBackgroundResource(recipeclass.getThumbnail());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Log.d("fav", recipeclass.getName());
 
-                DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
-                try{
+                DatabaseReference def = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites");
+                if (fav.equals("fav")){
+                    def.child(recipeclass.getName()).removeValue();
+                }else {
+                    try {
 
-                    def.child(recipeclass.getName()).setValue(recipeclass);
+                        def.child(recipeclass.getName()).setValue(recipeclass);
 //                    Log.d("ll", String.valueOf(recipeclass));
 
-                }catch (Exception e){
+                    } catch (Exception e) {
 
+                    }
                 }
 
             }

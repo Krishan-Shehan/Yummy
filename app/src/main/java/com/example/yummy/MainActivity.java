@@ -6,8 +6,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.yummy.Model.Onlineuser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +25,19 @@ public class MainActivity extends AppCompatActivity {
     //Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d("checkUser", Onlineuser.onlineuser.getPhone());
+
         fav = findViewById(R.id.button);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,AddIngredientCategory.class);
+                Intent intent = new Intent(MainActivity.this,IngredientList.class);
                 startActivity(intent);
             }
         });
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this,Favorites.class);
+               Intent intent = new Intent(MainActivity.this,RecipeList.class);
                startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.yummy.Model.Onlineuser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +62,7 @@ public class Recipe extends AppCompatActivity {
 //                Log.d("draw", String.valueOf(x));
 //                Drawable.createFromPath("@drawable/ic_baseline_add_circle_outline_24");
                 Log.d("t1","click fav");
-                DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
+                DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child(Onlineuser.onlineuser.getPhone()).child("favorites");
                 try{
 
                     def.child(recipeclass.getName()).setValue(recipeclass);
@@ -98,7 +99,7 @@ public class Recipe extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.hasChild(recipeclass.getName())){
 //                            notes.getText();
-                            recipeclass.setThumbnail(1234);
+                            recipeclass.setNote(notes.getText().toString());
 
                             DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav").child(recipeclass.getName());
                             dRef.setValue(recipeclass);

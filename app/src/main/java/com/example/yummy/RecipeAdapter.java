@@ -30,6 +30,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
         holder.recipename.setText(recipeclass.getName());
+        holder.ingredients.setText(recipeclass.getIngredients());
+        holder.details.setText(recipeclass.getMethod());
+        holder.portions.setText(recipeclass.getPortion());
+        holder.notes.setText(recipeclass.getNote());
         Log.d("albumrname", recipeclass.getName());
     }
 
@@ -40,7 +44,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView recipename, ingredients, portions, details;
+        TextView recipename, ingredients, portions, details,notes;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -48,6 +52,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             ingredients = itemView.findViewById(R.id.ingredients);
             portions = itemView.findViewById(R.id.portions);
             details = itemView.findViewById(R.id.recipedetails);
+            notes = itemView.findViewById(R.id.newnotes);
         }
     }
 }
