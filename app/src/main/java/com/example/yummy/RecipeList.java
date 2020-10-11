@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,7 @@ public class RecipeList extends AppCompatActivity {
     private List<Recipeclass> recipeclassList;
     public List<String> ingredients = new ArrayList<>();
     Recipeclass recipeclass;
+    ImageView profilego;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,14 @@ public class RecipeList extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_list);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        profilego = findViewById(R.id.profilego_logo);
+        profilego.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecipeList.this,Home.class);
+                startActivity(intent);
+            }
+        });
         recipeclassList = new ArrayList<>();
 
         ingredients.add("True");
@@ -45,7 +56,7 @@ public class RecipeList extends AppCompatActivity {
         recipeclass = new Recipeclass();
 
 //        prepareAlbums();
-        adapter = new AlbumsAdapter(RecipeList.this, recipeclassList);
+        adapter = new AlbumsAdapter(RecipeList.this, recipeclassList,"");
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(RecipeList.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -53,7 +64,7 @@ public class RecipeList extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipeclass");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipe");
 
 //        Query query1 = recipeRef.where("ingredients.tomato", "==", true).where("ingredients.pepper", "==", true).where("ingredients.cheese", "==", true);
 
@@ -83,7 +94,6 @@ public class RecipeList extends AppCompatActivity {
             Log.d("recipeclass", String.valueOf(recipeclassList));
             adapter.notifyDataSetChanged();
 
-
         }
 
         @Override
@@ -101,52 +111,52 @@ public class RecipeList extends AppCompatActivity {
     /**
      * Adding few albums for testing
      */
-    private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.album1,
-                R.drawable.album2,
-                R.drawable.album3,
-                R.drawable.album4,
-                R.drawable.album5,
-                R.drawable.album6,
-                R.drawable.album7,
-                R.drawable.album8,
-                R.drawable.album9,
-                R.drawable.album10,
-                R.drawable.album11};
+//    private void prepareAlbums() {
+//        int[] covers = new int[]{
+//                R.drawable.album1,
+//                R.drawable.album2,
+//                R.drawable.album3,
+//                R.drawable.album4,
+//                R.drawable.album5,
+//                R.drawable.album6,
+//                R.drawable.album7,
+//                R.drawable.album8,
+//                R.drawable.album9,
+//                R.drawable.album10,
+//                R.drawable.album11};
 
-        Recipeclass a = new Recipeclass("True Romance", covers[0]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Xscpae",covers[1]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Maroon 5",  covers[2]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Born to Die",  covers[3]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Honeymoon",  covers[4]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("I Need a Doctor", covers[5]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Loud",  covers[6]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Legend",  covers[7]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Hello", covers[8]);
-        recipeclassList.add(a);
-
-        a = new Recipeclass("Greatest Hits",covers[9]);
-        recipeclassList.add(a);
-
-        adapter.notifyDataSetChanged();
-    }
+//        Recipeclass a = new Recipeclass("True Romance", covers[0]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Xscpae",covers[1]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Maroon 5",  covers[2]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Born to Die",  covers[3]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Honeymoon",  covers[4]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("I Need a Doctor", covers[5]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Loud",  covers[6]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Legend",  covers[7]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Hello", covers[8]);
+//        recipeclassList.add(a);
+//
+//        a = new Recipeclass("Greatest Hits",covers[9]);
+//        recipeclassList.add(a);
+//
+//        adapter.notifyDataSetChanged();
+//    }
 
     /**
      * RecyclerView item decoration - give equal margin around grid item

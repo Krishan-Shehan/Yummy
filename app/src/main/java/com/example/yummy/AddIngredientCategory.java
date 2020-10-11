@@ -39,7 +39,7 @@ public class AddIngredientCategory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddIngredientCategory.this, AddAdmin.class);
-                intent.putExtra("category", "dairy");
+                intent.putExtra("category", "Added Sweeteners");
                 intent.putExtra("countofing", 0);
                 startActivity(intent);
             }

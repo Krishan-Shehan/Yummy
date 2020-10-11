@@ -137,9 +137,20 @@ public class Login extends AppCompatActivity {
                         if(userData.getPassword().equals(password)){
 
                             if (phone.equals("01190119")){
+                                Toast.makeText(Login.this,"Logged in Successfully..",Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                loged.add(userData);
+                                Intent intent = new Intent(Login.this, AddIngredientCategory.class);
+                                startActivity(intent);
+                                Onlineuser.onlineuser = userData;
 
-                            }else if(phone.equals("01180116")){
-
+                            }else if(phone.equals("01180118")){
+                                Toast.makeText(Login.this,"Logged in Successfully..",Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                loged.add(userData);
+                                Intent intent = new Intent(Login.this, AddRecipe.class);
+                                startActivity(intent);
+                                Onlineuser.onlineuser = userData;
                             }else{
                                 Toast.makeText(Login.this,"Logged in Successfully..",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();

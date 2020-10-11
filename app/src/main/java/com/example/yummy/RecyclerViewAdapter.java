@@ -140,6 +140,7 @@ public class RecyclerViewAdapter extends
                             Log.d("ki", String.valueOf(imList));
                             int x =imList.indexOf(imList.get(position));
                             imList.remove(x);
+
                             Log.d("ki", String.valueOf(imList));
                             DatabaseReference def = FirebaseDatabase.getInstance().getReference("IngredientsCategory").child(child);
                             def.setValue(imList);

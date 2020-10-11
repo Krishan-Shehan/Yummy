@@ -62,7 +62,7 @@ public class Recipe extends AppCompatActivity {
 //                Log.d("draw", String.valueOf(x));
 //                Drawable.createFromPath("@drawable/ic_baseline_add_circle_outline_24");
                 Log.d("t1","click fav");
-                DatabaseReference def = FirebaseDatabase.getInstance().getReference("User").child(Onlineuser.onlineuser.getPhone()).child("favorites");
+                DatabaseReference def = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites");
                 try{
 
                     def.child(recipeclass.getName()).setValue(recipeclass);
@@ -93,7 +93,7 @@ public class Recipe extends AppCompatActivity {
         addtonote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav");
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,7 +101,7 @@ public class Recipe extends AppCompatActivity {
 //                            notes.getText();
                             recipeclass.setNote(notes.getText().toString());
 
-                            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("User").child("User1").child("fav").child(recipeclass.getName());
+                            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites").child(recipeclass.getName());
                             dRef.setValue(recipeclass);
                         }
                     }

@@ -34,20 +34,42 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/profilesettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Settings"
         android:height="20dp"/>
     <EditText
+        android:id="@+id/profileeditname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:hint="Edit Name"
         android:visibility="invisible"/>
     <Button
+        android:id="@+id/change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="change"
+        />
+    <Button
+        android:id="@+id/removeacc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Remove Account"
+        />
+    <Button
+        android:id="@+id/profilefav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Favourites"
+        />
+    <Button
+        android:id="@+id/profilehome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home"
         />
 
 

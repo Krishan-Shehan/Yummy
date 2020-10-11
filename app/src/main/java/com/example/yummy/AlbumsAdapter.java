@@ -66,15 +66,18 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Recipeclass recipeclass = recipeclassList.get(position);
+
         if (fav.equals("fav")){
             holder.button.setText("Delete");
         }
 
         holder.title.setText(recipeclass.getName());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Recipeclass recipeclass1 = recipeclass;
+
                 rep.add(recipeclass1);
                 Log.d("rep", String.valueOf(rep));
 
