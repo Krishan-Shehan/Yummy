@@ -34,7 +34,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public ImageView thumbnail, overflow;
-        public Button button;
+        public Button button,editbtn;
 
 
         public MyViewHolder(View view) {
@@ -43,6 +43,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 //            count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             button = view.findViewById(R.id.fav);
+            editbtn = view.findViewById(R.id.editres);
 //            overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
@@ -67,12 +68,27 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Recipeclass recipeclass = recipeclassList.get(position);
 
+        if (Onlineuser.onlineuser.getPhone().equals("01180118")){
+            holder.editbtn.setVisibility(View.VISIBLE);
+        }
+
         if (fav.equals("fav")){
             holder.button.setText("Delete");
         }
 
         holder.title.setText(recipeclass.getName());
 
+        holder.editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Recipeclass recipeclass1 = recipeclass;
+
+                rep.add(recipeclass1);
+
+                Intent intent = new Intent(mContext, AddRecipe.class);
+                mContext.startActivity(intent);
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,30 +97,36 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                 rep.add(recipeclass1);
                 Log.d("rep", String.valueOf(rep));
 
-
                 Intent intent = new Intent(mContext, Recipe.class);
                 mContext.startActivity(intent);
 
             }
         });
+
         holder.thumbnail.setBackgroundResource(recipeclass.getThumbnail());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Log.d("fav", recipeclass.getName());
-
-                DatabaseReference def = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites");
-                if (fav.equals("fav")){
-                    def.child(recipeclass.getName()).removeValue();
+                if(Onlineuser.onlineuser.getPhone().equals("01180118")){
+                    Log.d("user", Onlineuser.onlineuser.getPhone());
+                    DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("Recipe");
+                    dataref.child(recipeclass.getName()).removeValue();
                 }else {
-                    try {
+                    Log.d("user", Onlineuser.onlineuser.getPhone());
+                    DatabaseReference def = FirebaseDatabase.getInstance().getReference("Users").child(Onlineuser.onlineuser.getPhone()).child("favorites");
+                    if (fav.equals("fav")) {
+                        def.child(recipeclass.getName()).removeValue();
+                    } else {
+                        try {
 
-                        def.child(recipeclass.getName()).setValue(recipeclass);
+                            def.child(recipeclass.getName()).setValue(recipeclass);
 //                    Log.d("ll", String.valueOf(recipeclass));
 
-                    } catch (Exception e) {
+                        } catch (Exception e) {
 
+                        }
                     }
                 }
 

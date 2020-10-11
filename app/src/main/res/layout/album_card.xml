@@ -42,7 +42,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:text="Fav"/>
-
+            <Button
+                android:id="@+id/editres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fav"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:text="Edit"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

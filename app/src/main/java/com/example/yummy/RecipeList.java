@@ -32,11 +32,18 @@ public class RecipeList extends AppCompatActivity {
     public List<String> ingredients = new ArrayList<>();
     Recipeclass recipeclass;
     ImageView profilego;
+    String admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
+
+        try {
+            admin  = getIntent().getExtras().getString("Radmin");
+        }catch (Exception e){
+
+        }
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         profilego = findViewById(R.id.profilego_logo);
@@ -56,7 +63,11 @@ public class RecipeList extends AppCompatActivity {
         recipeclass = new Recipeclass();
 
 //        prepareAlbums();
-        adapter = new AlbumsAdapter(RecipeList.this, recipeclassList,"");
+        if (admin.equals("R")){
+            adapter = new AlbumsAdapter(RecipeList.this, recipeclassList,"fav");
+        }else{
+            adapter = new AlbumsAdapter(RecipeList.this, recipeclassList,"");
+        }
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(RecipeList.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
