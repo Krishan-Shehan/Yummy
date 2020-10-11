@@ -44,7 +44,7 @@ public class AddRecipe extends AppCompatActivity {
     private String downloadImageUrl;
     private ProgressDialog loadingBar;
     Recipeclass recipeclass;
-
+    public String rep = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,10 @@ public class AddRecipe extends AppCompatActivity {
         RecipeImage = (ImageView) findViewById(R.id.recipe_image);
         loadingBar = new ProgressDialog(this);
 
+
         try {
+            rep = getIntent().getExtras().getString("rep");
+
             recipeclass = AlbumsAdapter.rep.get(0);
             AlbumsAdapter.rep.remove(0);
             inputRecipeName.setHint(recipeclass.getName());
@@ -72,21 +75,6 @@ public class AddRecipe extends AppCompatActivity {
             inputMethod.setHint(recipeclass.getMethod());
             inputPortion.setHint(recipeclass.getPortion());
 
-            addRecipe.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    recipeclass.setName(recipeclass.getName());
-                    recipeclass.setIngredients(recipeclass.getIngredients());
-                    recipeclass.setMethod(recipeclass.getMethod());
-                    recipeclass.setPortion(inputPortion.getText().toString());
-
-                    DatabaseReference databaseRefere = FirebaseDatabase.getInstance().getReference("Recipe");
-                    databaseRefere.child(recipeclass.getName()).setValue(recipeclass);
-
-//                ValidateRecipedata();
-                }
-            });
 
         }catch (Exception e){
 
@@ -112,17 +100,29 @@ public class AddRecipe extends AppCompatActivity {
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Recipeclass recipeclass = new Recipeclass();
 
-                recipeclass.setName(inputRecipeName.getText().toString());
-                recipeclass.setIngredients(inputIngredients.getText().toString());
-                recipeclass.setMethod(inputMethod.getText().toString());
-                recipeclass.setPortion(inputPortion.getText().toString());
+                if (rep.equals("rep")) {
+                    recipeclass.setName(recipeclass.getName());
+                    recipeclass.setIngredients(recipeclass.getIngredients());
+                    recipeclass.setMethod(recipeclass.getMethod());
+                    recipeclass.setPortion(inputPortion.getText().toString());
 
-                DatabaseReference databaseRefere = FirebaseDatabase.getInstance().getReference("Recipe");
-                databaseRefere.child(recipeclass.getName()).setValue(recipeclass);
+                    DatabaseReference databaseRefere = FirebaseDatabase.getInstance().getReference("Recipe");
+                    databaseRefere.child(recipeclass.getName()).setValue(recipeclass);
+                } else {
+
+                    Recipeclass recipeclass = new Recipeclass();
+
+                    recipeclass.setName(inputRecipeName.getText().toString());
+                    recipeclass.setIngredients(inputIngredients.getText().toString());
+                    recipeclass.setMethod(inputMethod.getText().toString());
+                    recipeclass.setPortion(inputPortion.getText().toString());
+
+                    DatabaseReference databaseRefere = FirebaseDatabase.getInstance().getReference("Recipe");
+                    databaseRefere.child(recipeclass.getName()).setValue(recipeclass);
 
 //                ValidateRecipedata();
+                }
             }
         });
 

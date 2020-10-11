@@ -32,7 +32,7 @@ public class RecipeList extends AppCompatActivity {
     public List<String> ingredients = new ArrayList<>();
     Recipeclass recipeclass;
     ImageView profilego;
-    String admin;
+    public String admin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

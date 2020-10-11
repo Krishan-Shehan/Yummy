@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/ringredients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:text="ingredients : "
             android:textSize="18dp"/>
         <TextView
@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/rrecipedetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="450dp"
             android:text="recipedetails : "
             android:textSize="18dp"/>
         <TextView
@@ -44,36 +44,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/recipename"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recipe Name : "
-        android:textSize="18dp"/>
-    <TextView
-        android:id="@+id/ingredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ingredients : "
-        android:textSize="18dp"/>
-    <TextView
-        android:id="@+id/portions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="portions : "
-        android:textSize="18dp"/>
-    <TextView
-        android:id="@+id/recipedetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="recipedetails : "
-        android:textSize="18dp"/>
-    <TextView
-        android:id="@+id/newnotes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Notes : "
-        android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/recipename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name : "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="flour 500 grams, yeast 7 grams, salt 2 teaspoons, yoghurt 2 tablespoons plain "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/portions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/recipedetails"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:text="Combine the flour, yeast and salt in a large bowl and make a well. Dollop the yoghurt and oil into a measuring jug and add warm water to come up to the to 1 cup plus 7 tablespoons. Give a quick beat with a fork to combine, then pour this liquid into the dry ingredients, and mix with your hands or a wooden spoon, adding more liquid as needed, to form a firm but soft dough. Turn out onto a floured surface (or set your mixer and dough hook to work) and start kneading. Add more flour as needed until you've got a smooth, supple and elastic dough. Form the dough into a ball, grease a bowl and turn the dough in it so it's lightly oiled all over. Cover the bowl with clingfilm and leave to rise for about an hour or so, until doubled in size."
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/newnotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to favorites to add note "
+            android:textSize="18dp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -32,7 +32,7 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/album_title"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/album_title" />
             <Button
                 android:id="@+id/fav"
@@ -41,6 +41,7 @@
                 android:layout_below="@+id/thumbnail"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:background="@drawable/rounded_corners"
                 android:text="Fav"/>
             <Button
                 android:id="@+id/editres"

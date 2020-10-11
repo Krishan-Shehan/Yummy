@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="222dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/egg_cress_club_sandwich_0" />
+                android:background="@drawable/egg_cress_club_sandwich_0" />
 
             <TextView
                 android:id="@+id/title"

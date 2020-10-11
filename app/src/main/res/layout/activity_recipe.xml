@@ -113,6 +113,8 @@
                 android:layout_centerHorizontal="true"/>
             <Button
                 android:id="@+id/addtonote"
+                android:background="@drawable/rounded_corners"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:visibility="invisible"
